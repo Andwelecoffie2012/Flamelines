@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flame Lines</title>
+  <link rel="manifest" href="manifest.json" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log("✅ Service Worker registered"))
+        .catch(err => console.error("❌ Service Worker failed", err));
+    }
+  </script>
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #121212; color: #fff; margin: 0; padding: 0; }
+    header { background-color: #1e1e1e; padding: 20px; text-align: center; }
+    h1 { margin: 0; font-size: 28px; color: #ff4500; }
+    .section { padding: 20px; }
+    select, textarea, input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      font-size: 16px;
+      border: 1px solid #444;
+      background: #222;
+      color: #fff;
+    }
+    button {
+      background-color: #ff4500;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background-color: #e03e00; }
+    .output, .daily { margin-top: 20px; padding: 10px; background: #1e1e1e; border: 1px solid #333; border-radius: 6px; }
+    .tip, .submission { text-align: center; margin-top: 30px; }
+    .tip a, .submission button { background: #ffbf00; color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔥 Flame Lines</h1>
+    <p>Choose your flame mode & drop some heat.</p>
+  </header>
+
+  <div class="section daily">
+    <h3>🔥 Daily Flame</h3>
+    <div id="dailyFlame">"Why you always offline in real life?" 💀</div>
+  </div>
+
+  <div class="section">
+    <label for="modeSelect">🔥 Pick a Mode:</label>
+    <select id="modeSelect">
+      <option value="bar">Bars</option>
+      <option value="flirty">Flirty</option>
+      <option value="roast">Roasts</option>
+      <option value="compliment">Compliments</option>
+      <option value="joke">Jokes</option>
+    </select>
+
+    <textarea id="inputText" placeholder="Type your line or setup here..."></textarea>
+    <button onclick="generateLine()">Mix It</button>
+    <div class="output" id="outputText"></div>
+  </div>
+
+  <div class="submission section">
+    <h3>💬 Got a Flame? Submit it!</h3>
+    <input type="text" id="submitLine" placeholder="Drop your flame here..." />
+    <button onclick="submitLine()">Send It</button>
+    <p id="submitStatus"></p>
+  </div>
+
+  <
